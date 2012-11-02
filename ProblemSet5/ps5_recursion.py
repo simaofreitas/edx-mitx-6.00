@@ -11,7 +11,7 @@ def reverseString(aStr):
     For example, if the string is 'abc', the function returns 'cba'.
     The only string operations you are allowed to use are indexing,
     slicing, and concatenation.
-    
+
     aStr: a string
     returns: a reversed string
     """
@@ -19,8 +19,6 @@ def reverseString(aStr):
         return ""
     else:
         return aStr[len(aStr)-1] + reverseString(aStr[:len(aStr)-1])
-
-print reverseString("abcde")
 
 #
 # Problem 4: Erician
@@ -36,7 +34,7 @@ def x_ian(x, word):
     False
     >>> x_ian('john', 'mahjong')
     False
-    
+
     x: a string
     word: a string
     returns: True if word is x_ian, False otherwise
@@ -49,11 +47,6 @@ def x_ian(x, word):
         return True and x_ian(x[1:], word[word.find(x[0]):])
     else:
         return False
-
-print x_ian('eric', 'algebraic')
-print x_ian('john', 'mahjong')
-print x_ian('alvin', 'palavering')
-print x_ian('sarina', 'czarina')
 
 
 #
@@ -68,6 +61,13 @@ def insertNewlines(text, lineLength):
     text: a string containing the text to wrap.
     line_length: the number of characters to include on a line before wrapping
         the next word.
-    returns: a string, with newline characters inserted appropriately. 
+    returns: a string, with newline characters inserted appropriately.
     """
     ### TODO.
+    if len(text) < lineLength or " " not in text:
+        return text
+    else:
+        empty = text[lineLength-1:].find(" ")
+        return text[:lineLength+empty].strip() + "\n" + insertNewlines(text[lineLength+empty:].strip(),lineLength)
+
+print insertNewlines('While I expect new intellectual adventures ahead, nothing will compare to the exhilaration of the world-changing accomplishments that we produced together.', 15)
