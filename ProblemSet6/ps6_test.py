@@ -6,8 +6,10 @@ from ps6 import *
 class ProblemSet6NewsStory(unittest.TestCase):
     def setUp(self):
         pass
+
     def testNewsStoryConstructor(self):
         story = NewsStory('', '', '', '', '')
+
     def testNewsStoryGetGuid(self):
         story = NewsStory('test guid', 'test title', 'test subject',
                           'test summary', 'test link')
@@ -61,7 +63,7 @@ class ProblemSet6(unittest.TestCase):
             self.assertTrue(trig.evaluate(pink), "TitleTrigger failed to fire when the word had an apostrophe on it")
             self.assertTrue(trig.evaluate(football), "TitleTrigger failed to fire in the presence of lots of punctuation")
             self.assertTrue(trig.evaluate(caps), "TitleTrigger is case-sensitive and shouldn't be")
-            
+
             self.assertFalse(trig.evaluate(microsoft), "TitleTrigger fired when the word was present, but not as its own word (e.g. 'soft' and 'Microsoft)'")
             self.assertFalse(trig.evaluate(nothing), "TitleTrigger fired when the word wasn't really present in the title")
 
@@ -84,7 +86,7 @@ class ProblemSet6(unittest.TestCase):
             self.assertTrue(trig.evaluate(pink), "SubjectTrigger failed to fire when the word had an apostrophe on it")
             self.assertTrue(trig.evaluate(football), "SubjectTrigger failed to fire in the presence of lots of punctuation")
             self.assertTrue(trig.evaluate(caps), "SubjectTrigger is case-sensitive and shouldn't be")
-            
+
             self.assertFalse(trig.evaluate(microsoft), "SubjectTrigger fired when the word was present, but not as its own word (e.g. 'soft' and 'Microsoft)'")
             self.assertFalse(trig.evaluate(nothing), "SubjectTrigger fired when the word wasn't really present in the subject")
 
@@ -107,7 +109,7 @@ class ProblemSet6(unittest.TestCase):
             self.assertTrue(trig.evaluate(pink), "SummaryTrigger failed to fire when the word had an apostrophe on it")
             self.assertTrue(trig.evaluate(football), "SummaryTrigger failed to fire in the presence of lots of punctuation")
             self.assertTrue(trig.evaluate(caps), "SummaryTrigger is case-sensitive and shouldn't be")
-            
+
             self.assertFalse(trig.evaluate(microsoft), "SummaryTrigger fired when the word was present, but not as its own word (e.g. 'soft' and 'Microsoft)'")
             self.assertFalse(trig.evaluate(nothing), "SummaryTrigger fired when the word wasn't really present in the summary")
 
@@ -157,7 +159,7 @@ class ProblemSet6(unittest.TestCase):
         self.assertTrue(pt.evaluate(a), "PhraseTrigger doesn't find phrase in title")
         self.assertTrue(pt.evaluate(b), "PhraseTrigger doesn't find phrase in subject")
         self.assertTrue(pt.evaluate(c), "PhraseTrigger doesn't find phrase in summary")
-    
+
         for s in [noa, nob, noc]:
             self.assertFalse(pt.evaluate(s), "PhraseTrigger is case-insensitive, and shouldn't be")
 
