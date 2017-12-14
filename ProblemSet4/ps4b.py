@@ -62,8 +62,21 @@ def compPlayHand(hand, wordList):
     hand: dictionary (string -> int)
     wordList: list (string)
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    
+    total = 0
+    comchoice = ''
+    while comchoice is not None:
+        comchoice = compChooseWord(hand, wordList, n)
+        print '\nCurrent hand:', displayHand(hand)
+        if isValidWord(comchoice, hand, wordList):
+            wordscore = getWordScore(comchoice, n)
+            total += wordscore
+            print '"'+ str(comchoice) + '"', 'earned', str(getWordScore(comchoice, n)) + ' points.', 'Total:', str(total), 'points'
+            hand = updateHand(hand, comchoice)
+        else:
+            continue
+    else:
+        print "Total Score:", total
+        
 #
 # Problem #8: Playing a game
 #
@@ -92,8 +105,36 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this when you code this function
+    user_input = ''
+    comlasthand = {}
+    humanlasthand = {}
+    lastplayer = None
+    while user_input is not 'e':
+        user_input = raw_input("Enter n to play a new hand, r to replay the last hand, e to end the game: ")
+        if user_input is 'e':
+            print 'Game ended!'
+            break
+        elif user_input is 'n':
+            userinput = raw_input("Enter u for user play, c for comp play: ")
+            if userinput is 'u':
+                lastplayer = 'Human'
+                humanlasthand = dealHand(HAND_SIZE)
+                playHand(humanlasthand.copy(), wordList, HAND_SIZE)
+            elif userinput is 'c':
+                lastplayer = 'Comp'
+                comlasthand = dealHand(HAND_SIZE)
+                compPlayHand(comlasthand.copy(), wordList, HAND_SIZE)
+            else:
+                print 'Invalid Command'
+        elif user_input is 'r' and lastplayer is 'Human':
+            playHand(humanlasthand.copy(), wordList, HAND_SIZE)
+        elif user_input is 'r' and lastplayer is 'Comp':
+            compPlayHand(comlasthand.copy(), wordList, HAND_SIZE)
+        elif user_input is 'r' and lastplayer is None:
+            print 'You haven\'t played a hand yet, please play a hand.\n'
+        else:
+            print 'Invalid Command!'
+
 
         
 #
